@@ -1,6 +1,14 @@
+lang messages none
+set langmenu=none
+
+let mapleader = ","
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Pathogen. See http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype off
+call pathogen#runtime_append_all_bundles()
+filetype plugin indent on
 
 set nocompatible
 
