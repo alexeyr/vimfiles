@@ -250,6 +250,8 @@ set backspace=indent,eol,start " Allow sane backspacing
 set relativenumber 
 set undofile " Store undo info in a separate line, so it survives opening/closing
 
+color inkpot " Color scheme
+
 " -----------------------------------------------------------------------------
 " | Plug-ins |
 " -----------------------------------------------------------------------------
