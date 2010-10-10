@@ -33,21 +33,6 @@ set smartindent " smartindent (local to buffer)
 set cursorline " Highlight selected line
 "set cursorcolumn " Highlight selected column
 
-set fencs=utf-8,cp1251,koi8-r,utf-16,cp866
-set scrolloff=3
-set showmode
-set showcmd
-set hidden
-set wildmenu
-set wildmode=list:longest
-set visualbell
-set ttyfast
-set ruler
-set backspace=indent,eol,start
-set laststatus=2
-set relativenumber
-set undofile
-
 " Searching *******************************************************************
 set hlsearch " Highlight search results
 set incsearch " Incremental search, search as you type
@@ -56,15 +41,17 @@ set smartcase " Ignore case when searching lowercase
 " <esc> to remove highlighting! Huzzah!
 nnoremap <esc> :noh<return><esc>
 
-" Regexes *******************************************************************
+" Regexes *********************************************************************
 set gdefault " global replace by default, add /g to replace first match only
-" Always use perl-compatible replace syntax
+" Only letters, numbers, and underscore are treated as literals in regexes
 nnoremap / /\v
 vnoremap / /\v
-set showmatch
-nnoremap <leader><space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
+
+" Bracket matching ************************************************************
+set showmatch " Highlight matching char when cursor goes over a bracket/quote/...
+" Allow use of <tab> to go to matching char
+"nnoremap <tab> %
+"vnoremap <tab> %
 
 " Insert New Line *************************************************************
 map <S-Enter> O<ESC> " awesome, inserts new line without going into insert mode
@@ -147,8 +134,7 @@ set autochdir
 " marks, registers, searches, buffer list
 set viminfo='20,<50,s10,h,%
 
-" use console dialogs instead of popup
-" dialogs for simple choices
+" use console dialogs instead of popup dialogs for simple choices
 set guioptions+=c
 
 if has("gui") 
@@ -173,7 +159,7 @@ if has("gui")
 	endif
 endif
 
-" Omni Completion *************************************************************
+" Omni completion *************************************************************
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -184,6 +170,24 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 " May require ruby compiled in
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 
+" Command-line completion *****************************************************
+set wildmenu " Show a list of possible completions when pressing <tab>/C-p/C-n
+set wildmode=list:longest " And complete to longest common prefix
+
+" Misc ************************************************************************
+set fileencodings=ucs-bom,utf-8,utf-16,cp1251,koi8-r,cp866 " Select encoding
+set scrolloff=3 " Keep this number of lines below and above cursor
+set showmode " If in Insert, Replace or Visual mode put a message on command line
+set showcmd " Show (partial) command in the last line of the screen
+set hidden " When abandoning a buffer it's hidden, not closed
+set visualbell " Use visual bell on error instead of beeping
+set ttyfast " More characters will be sent to the screen for redrawing
+set ruler " Show the line and column number of the cursor position in status line
+set backspace=indent,eol,start " Allow sane backspacing
+set laststatus=2 " Always show a status line
+" Show line numbers relative to cursor line (v. useful for movement commands)
+set relativenumber 
+set undofile " Store undo info in a separate line, so it survives opening/closing
 
 " -----------------------------------------------------------------------------
 " | Plug-ins |
