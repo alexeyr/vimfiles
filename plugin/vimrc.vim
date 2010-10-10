@@ -105,6 +105,8 @@ nnoremap ` '
 " Navigation 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let mapleader = ","
+
 " Make cursor move by visual lines instead of file lines (when wrapping)
 map <up> gk
 map k gk
@@ -114,7 +116,7 @@ map j gj
 imap <down> <C-o>gj
 map E ge
 
-map <Leader>p <C-^> " Go to previous file
+map <leader>p <C-^> " Go to previous file
 
 " Ctrl+Movement moves to corresponding window
 nnoremap <leader>w <C-w>v<C-w>l
@@ -129,8 +131,6 @@ nnoremap <C-right> <C-w>l
 
 " Save on focus loss
 au FocusLost * :wa
-
-let mapleader = ","
 
 " search for visually highlighted text
 vmap // y/<C-R>"<CR>       
@@ -256,3 +256,36 @@ color inkpot " Color scheme
 " | Plug-ins |
 " -----------------------------------------------------------------------------
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>n :NERDTreeToggle<CR>
+let NERDTreeHijackNetrw=1 " User instead of Netrw when doing an edit /foobar
+let NERDTreeMouseMode=1 " Single click for everything
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MiniBufExpl
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1 
+
+" -----------------------------------------------------------------------------
+" | Host specific |
+" -----------------------------------------------------------------------------
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+
+"if hostname() == "foo"
+  " do something
+"endif
+
+" Example .vimrc.local:
+
+"call Tabstyle_tabs()
+"colorscheme ir_dark
+"match LongLineWarning '\%120v.*'
+
+"autocmd User ~/git/some_folder/* call Tabstyle_spaces() | let g:force_xhtml=1
