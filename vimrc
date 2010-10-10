@@ -2,7 +2,9 @@
 lang messages none
 set langmenu=none
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Pathogen. See http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 call pathogen#runtime_append_all_bundles()
 filetype plugin indent on
@@ -11,13 +13,17 @@ set nocompatible
 
 set modelines=0
 
-" Behave like Windows *********************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Behave like Windows 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 source $VIMRUNTIME/mswin.vim
 behave mswin
 set selectmode="" " except don't use Select mode, use Visual mode instead
 set clipboard=unnamed
 
-" Tab Options *****************************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tab Options 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -25,15 +31,21 @@ set expandtab " Replace tabs by spaces
 set smarttab " <tab> inserts <shiftwidth> spaces in beginning of line
 au FileType crontab,fstab,make set noexpandtab
 
-" Indenting *******************************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indenting 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autoindent " Automatically set the indent of a new line (local to buffer)
 set smartindent " smartindent (local to buffer)
 
-" Cursor highlights ***********************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Cursor highlights 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set cursorline " Highlight selected line
 "set cursorcolumn " Highlight selected column
 
-" Searching *******************************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Searching 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set hlsearch " Highlight search results
 set incsearch " Incremental search, search as you type
 set ignorecase " Ignore case when searching
@@ -41,33 +53,43 @@ set smartcase " Ignore case when searching lowercase
 " <esc> to remove highlighting! Huzzah!
 nnoremap <esc> :noh<return><esc>
 
-" Regexes *********************************************************************
-set gdefault " global replace by default, add /g to replace first match only
 " Only letters, numbers, and underscore are treated as literals in regexes
 nnoremap / /\v
 vnoremap / /\v
 
-" Bracket matching ************************************************************
+set gdefault " replace global by default, add /g to replace first match only
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Bracket matching 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set showmatch " Highlight matching char when cursor goes over a bracket/quote/...
 " Allow use of <tab> to go to matching char
 "nnoremap <tab> %
 "vnoremap <tab> %
 
-" Insert New Line *************************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Insert New Line 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <S-Enter> O<ESC> " awesome, inserts new line without going into insert mode
 map <Enter> o<ESC>
 
-" Line Wrapping ***************************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Line Wrapping 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set nowrap
 "set linebreak " Wrap at word
 set wrap
 
-" Text width ******************************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Text width 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set textwidth=79
 set formatoptions=qrcn1
 "set colorcolumn=85
 
-" Highlight tabs and trailing spaces ******************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Highlight tabs and trailing spaces 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set listchars=tab:··
 set list
 "highlight LeadingTab ctermbg=lightblue guibg=lightblue
@@ -83,7 +105,9 @@ set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jp
 nnoremap ' `
 nnoremap ` '
 
-" Navigation ******************************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Navigation 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Make cursor move by visual lines instead of file lines (when wrapping)
 map <up> gk
@@ -159,7 +183,9 @@ if has("gui")
 	endif
 endif
 
-" Omni completion *************************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Omni completion 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -170,11 +196,36 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 " May require ruby compiled in
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 
-" Command-line completion *****************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Command-line completion 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set wildmenu " Show a list of possible completions when pressing <tab>/C-p/C-n
 set wildmode=list:longest " And complete to longest common prefix
 
-" Misc ************************************************************************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Error window
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Do :help cope if you are unsure what cope is. It's super useful!
+map <leader>cc :botright cope<cr>
+map <leader>n :cn<cr>
+map <leader>p :cp<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+"Shortcuts using <leader>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Misc 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set fileencodings=ucs-bom,utf-8,utf-16,cp1251,koi8-r,cp866 " Select encoding
 set scrolloff=3 " Keep this number of lines below and above cursor
 set showmode " If in Insert, Replace or Visual mode put a message on command line
