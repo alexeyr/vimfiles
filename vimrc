@@ -1,4 +1,5 @@
-lang messages English_US " down with Russian translation! May need other names, depending on system :(
+" down with Russian translation! Do this at the beginning
+lang messages none
 set langmenu=none
 
 filetype off
