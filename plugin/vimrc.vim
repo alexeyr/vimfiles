@@ -270,6 +270,12 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
+let g:miniBufExplUseSingleClick = 1
+let g:miniBufExplorerMoreThanOne = 2
+
+autocmd BufRead,BufNew :call UMiniBufExplorer
+
+map <leader>u :TMiniBufExplorer<cr>
 
 " -----------------------------------------------------------------------------
 " | Host specific |
