@@ -1,0 +1,1 @@
+To start using this Vim setup, clone the repository into %HOME%/vimfiles (Windows) or ~/.vimfiles (Linux) folder and run the shell/batch script copy_dot_vimrc_to_home(.bat).
