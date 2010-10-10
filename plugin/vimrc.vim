@@ -222,6 +222,21 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Status line 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set laststatus=2 " Always show status line
+" Format the statusline
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l/%L Column:\ %c
+
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    else
+        return ''
+    endif
+endfunction
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc 
@@ -235,7 +250,6 @@ set visualbell " Use visual bell on error instead of beeping
 set ttyfast " More characters will be sent to the screen for redrawing
 set ruler " Show the line and column number of the cursor position in status line
 set backspace=indent,eol,start " Allow sane backspacing
-set laststatus=2 " Always show a status line
 " Show line numbers relative to cursor line (v. useful for movement commands)
 set relativenumber 
 set undofile " Store undo info in a separate line, so it survives opening/closing
