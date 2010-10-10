@@ -1,4 +1,5 @@
-lang English_US
+lang messages English_US " down with Russian translation! May need other names, depending on system :(
+set langmenu=none
 
 filetype off
 call pathogen#runtime_append_all_bundles()
@@ -39,15 +40,18 @@ set laststatus=2
 set relativenumber
 set undofile
 
-" search options
+" Searching *******************************************************************
+set hlsearch " highlight search
+set incsearch " Incremental search, search as you type
+set ignorecase " Ignore case when searching
+set smartcase " Ignore case when searching lowercase
+
+" Regexes *******************************************************************
+set gdefault " global replace by default, add /g to replace first match only
+" Always use perl-compatible replace syntax
 nnoremap / /\v
 vnoremap / /\v
-set ignorecase
-set smartcase
-set gdefault
-set incsearch
 set showmatch
-set hlsearch
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
