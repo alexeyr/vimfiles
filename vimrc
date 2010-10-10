@@ -24,9 +24,13 @@ set expandtab
 set smarttab
 au FileType crontab,fstab,make set noexpandtab
 
+
+" Indenting *******************************************************************
+set autoindent " Automatically set the indent of a new line (local to buffer)
+set smartindent " smartindent (local to buffer)
+
 set fencs=utf-8,cp1251,koi8-r,utf-16,cp866
 set scrolloff=3
-set autoindent
 set showmode
 set showcmd
 set hidden
@@ -125,6 +129,8 @@ if has("gui")
 		set guifont=Terminus \10
 	elseif has("gui_kde")
 		set guifont=Terminus\ /10/-1/5/50/0/0/0/1/0
+	elseif has("gui_macvim")
+		set guifont=Monaco:h10
 	endif
 
 	" Maximize
@@ -132,5 +138,7 @@ if has("gui")
 		au GUIEnter * :simalt ~x 
 	elseif has("gui_gtk2")
 		au GUIEnter * :set lines=99999 columns=99999
+	elseif has("gui_macvim")
+		au GUIEnter * :set fuoptions=maxvert,maxhorz
 	endif
 endif
