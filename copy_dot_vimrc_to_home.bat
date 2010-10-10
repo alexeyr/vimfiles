@@ -1,0 +1,1 @@
+COPY .vimrc %HOME%

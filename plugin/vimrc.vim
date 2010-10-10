@@ -1,7 +1,3 @@
-" down with Russian translation! Do this at the beginning
-lang messages none
-set langmenu=none
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Pathogen. See http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
