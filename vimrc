@@ -2,6 +2,7 @@
 lang messages none
 set langmenu=none
 
+" Use Pathogen. See http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 filetype off
 call pathogen#runtime_append_all_bundles()
 filetype plugin indent on
@@ -10,24 +11,27 @@ set nocompatible
 
 set modelines=0
 
-" Behave like Windows
+" Behave like Windows *********************************************************
 source $VIMRUNTIME/mswin.vim
 behave mswin
 set selectmode="" " except don't use Select mode, use Visual mode instead
 set clipboard=unnamed
 
-" tab options
+" Tab Options *****************************************************************
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set expandtab
-set smarttab
+set expandtab " Replace tabs by spaces
+set smarttab " <tab> inserts <shiftwidth> spaces in beginning of line
 au FileType crontab,fstab,make set noexpandtab
-
 
 " Indenting *******************************************************************
 set autoindent " Automatically set the indent of a new line (local to buffer)
 set smartindent " smartindent (local to buffer)
+
+" Cursor highlights ***********************************************************
+set cursorline " Highlight selected line
+"set cursorcolumn " Highlight selected column
 
 set fencs=utf-8,cp1251,koi8-r,utf-16,cp866
 set scrolloff=3
@@ -37,7 +41,6 @@ set hidden
 set wildmenu
 set wildmode=list:longest
 set visualbell
-set cursorline
 set ttyfast
 set ruler
 set backspace=indent,eol,start
@@ -46,10 +49,12 @@ set relativenumber
 set undofile
 
 " Searching *******************************************************************
-set hlsearch " highlight search
+set hlsearch " Highlight search results
 set incsearch " Incremental search, search as you type
 set ignorecase " Ignore case when searching
 set smartcase " Ignore case when searching lowercase
+" <esc> to remove highlighting! Huzzah!
+nnoremap <esc> :noh<return><esc>
 
 " Regexes *******************************************************************
 set gdefault " global replace by default, add /g to replace first match only
@@ -61,45 +66,70 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
-set wrap
-set textwidth=79
-set formatoptions=qrn1
-set colorcolumn=85
+" Insert New Line *************************************************************
+map <S-Enter> O<ESC> " awesome, inserts new line without going into insert mode
+map <Enter> o<ESC>
 
-set list
+" Line Wrapping ***************************************************************
+"set nowrap
+"set linebreak " Wrap at word
+set wrap
+
+" Text width ******************************************************************
+set textwidth=79
+set formatoptions=qrcn1
+"set colorcolumn=85
+
+" Highlight tabs and trailing spaces ******************************************
 set listchars=tab:··
+set list
+"highlight LeadingTab ctermbg=lightblue guibg=lightblue
+highlight EvilSpace ctermbg=darkred guibg=darkred
+au Syntax * syn match LeadingTab /^\t\+/
+au Syntax * syn match LeadingSpace /^\ \+/
+au Syntax * syn match EvilSpace /\(^\t*\)\@<!\t\+/ " tabs not preceeded by tabs
+au Syntax * syn match EvilSpace /[ \t]\+$/ " trailing space
 
 " Ignore these files when completing names and in Explorer
-set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.exe
 " Change keys for visiting bookmarks
 nnoremap ' `
 nnoremap ` '
 
-" j/k move by screen lines instead of file lines
-nnoremap j gj
-nnoremap k gk
+" Navigation ******************************************************************
 
-" Save on focus loss
-au FocusLost * :wa
+" Make cursor move by visual lines instead of file lines (when wrapping)
+map <up> gk
+map k gk
+imap <up> <C-o>gk
+map <down> gj
+map j gj
+imap <down> <C-o>gj
+map E ge
 
-" <esc> to remove highlighting! Huzzah!
-:nnoremap <esc> :noh<return><esc>
+map <Leader>p <C-^> " Go to previous file
 
-let mapleader = ","
-
-" Window splits
+" Ctrl+Movement moves to corresponding window
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <C-left> <C-w>h
+nnoremap <C-down> <C-w>j
+nnoremap <C-up> <C-w>k
+nnoremap <C-right> <C-w>l
+
+" Save on focus loss
+au FocusLost * :wa
+
+let mapleader = ","
 
 " search for visually highlighted text
 vmap // y/<C-R>"<CR>       
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
-
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -110,7 +140,7 @@ if has('mouse')
   set mouse=a
 endif
 
-" current directory is always matching the content of the active window
+" current directory always matches the content of the active window
 set autochdir
 
 " remember some stuff after quiting vim:
@@ -142,3 +172,9 @@ if has("gui")
 		au GUIEnter * :set fuoptions=maxvert,maxhorz
 	endif
 endif
+
+
+" -----------------------------------------------------------------------------
+" | Plug-ins |
+" -----------------------------------------------------------------------------
+
