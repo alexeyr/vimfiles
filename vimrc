@@ -22,7 +22,7 @@ set expandtab
 set smarttab
 au FileType crontab,fstab,make set noexpandtab
 
-" set encoding=utf-8
+set fencs=utf-8,cp1251,koi8-r,utf-16,cp866
 set scrolloff=3
 set autoindent
 set showmode
@@ -101,8 +101,7 @@ if has('mouse')
   set mouse=a
 endif
 
-" current directory is always matching the
-" content of the active window
+" current directory is always matching the content of the active window
 set autochdir
 
 " remember some stuff after quiting vim:
@@ -113,6 +112,20 @@ set viminfo='20,<50,s10,h,%
 " dialogs for simple choices
 set guioptions+=c
 
-if has("gui_win32")       " NT Windows
-    autocmd GUIEnter * :simalt ~x " Maximize
+if has("gui") 
+	" Set font
+	if has("win32")
+		set guifont=Consolas:h10:cRUSSIAN
+	elseif has("gui_gtk2")
+		set guifont=Terminus \10
+	elseif has("gui_kde")
+		set guifont=Terminus\ /10/-1/5/50/0/0/0/1/0
+	endif
+
+	" Maximize
+	if has("win32") 
+		au GUIEnter * :simalt ~x 
+	elseif has("gui_gtk2")
+		au GUIEnter * :set lines=99999 columns=99999
+	endif
 endif
