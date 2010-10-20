@@ -8,6 +8,7 @@ let mapleader = ","
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 call pathogen#runtime_append_all_bundles()
+" call pathogen#helptags()
 filetype plugin indent on
 
 set nocompatible
@@ -252,8 +253,27 @@ set ttyfast " More characters will be sent to the screen for redrawing
 set ruler " Show the line and column number of the cursor position in status line
 set backspace=indent,eol,start " Allow sane backspacing
 " Show line numbers relative to cursor line (v. useful for movement commands)
-set relativenumber 
-set undofile " Store undo info in a separate line, so it survives opening/closing
+if has('relativenumber')
+    set relativenumber 
+elseif has('number')
+    set number
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Backup
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if !filewritable($TEMP."/vim/")
+    silent execute '!mkdir "'.$TEMP.'/vim"'
+endif
+
+if v:version >= 703
+    set undofile " Store undo info in a separate line, so it survives opening/closing
+    set undodir=$TEMP/vim//
+endif
+
+set backup
+set backupdir=$TEMP/vim//
 
 color inkpot " Color scheme
 
