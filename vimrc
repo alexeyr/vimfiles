@@ -263,17 +263,25 @@ endif
 " Backup
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if !filewritable($TEMP."/vim/")
-    silent execute '!mkdir "'.$TEMP.'/vim"'
+if has('win32')
+    let s:tempdir=$TEMP."/vim"
+else
+    let s:tempdir="/tmp/vim"
+endif
+
+if !filewritable(s:tempdir)
+    silent execute '!mkdir "'.s:tempdir
 endif
 
 if v:version >= 703
     set undofile " Store undo info in a separate line, so it survives opening/closing
-    set undodir=$TEMP/vim//
+    execute "set undodir=".s:tempdir."//"
 endif
 
 set backup
-set backupdir=$TEMP/vim//
+execute "set backupdir=".s:tempdir."//"
+
+execute "set directory=".s:tempdir."//"
 
 color inkpot " Color scheme
 
