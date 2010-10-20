@@ -151,7 +151,7 @@ inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-  set mouse=a
+    set mouse=a
 endif
 
 " current directory always matches the content of the active window
@@ -165,25 +165,25 @@ set viminfo='20,<50,s10,h,%
 set guioptions+=c
 
 if has("gui") 
-	" Set font
-	if has("win32")
-		set guifont=Consolas:h10:cRUSSIAN
-	elseif has("gui_gtk2")
-		set guifont=Terminus \10
-	elseif has("gui_kde")
-		set guifont=Terminus\ /10/-1/5/50/0/0/0/1/0
-	elseif has("gui_macvim")
-		set guifont=Monaco:h10
-	endif
+    " Set font
+    if has("win32")
+        set guifont=Consolas:h10:cRUSSIAN
+    elseif has("gui_gtk2")
+        set guifont=Terminus \10
+    elseif has("gui_kde")
+        set guifont=Terminus\ /10/-1/5/50/0/0/0/1/0
+    elseif has("gui_macvim")
+        set guifont=Monaco:h10
+    endif
 
-	" Maximize
-	if has("win32") 
-		au GUIEnter * :simalt ~x 
-	elseif has("gui_gtk2")
-		au GUIEnter * :set lines=99999 columns=99999
-	elseif has("gui_macvim")
-		au GUIEnter * :set fuoptions=maxvert,maxhorz
-	endif
+    " Maximize
+    if has("win32") 
+        au GUIEnter * :simalt ~x 
+    elseif has("gui_gtk2")
+        au GUIEnter * :set lines=99999 columns=99999
+    elseif has("gui_macvim")
+        au GUIEnter * :set fuoptions=maxvert,maxhorz
+    endif
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -315,11 +315,11 @@ map <leader>u :TMiniBufExplorer<cr>
 " | Host specific |
 " -----------------------------------------------------------------------------
 if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
+    source ~/.vimrc.local
 endif
 
 "if hostname() == "foo"
-  " do something
+" do something
 "endif
 
 " Example .vimrc.local:
