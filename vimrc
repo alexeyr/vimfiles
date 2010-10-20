@@ -8,7 +8,7 @@ let mapleader = ","
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 call pathogen#runtime_append_all_bundles()
-" call pathogen#helptags()
+" call pathogen#helptags() " see http://github.com/tpope/vim-pathogen/issues#issue/7
 filetype plugin indent on
 syntax on
 
