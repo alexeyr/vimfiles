@@ -169,7 +169,7 @@ if has("gui")
     if has("win32")
         set guifont=Consolas:h10:cRUSSIAN
     elseif has("gui_gtk2")
-        set guifont=Terminus \10
+        set guifont=Droid\ Sans\ Mono\ Slashed\ 10
     elseif has("gui_kde")
         set guifont=Terminus\ /10/-1/5/50/0/0/0/1/0
     elseif has("gui_macvim")
@@ -244,7 +244,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set fileencodings=ucs-bom,utf-8,utf-16,cp1251,koi8-r,cp866 " Select encoding
+" set fileencodings=ucs-bom,utf-8,utf-16,latin1,cp1251,koi8-r,cp866 " Select encoding
 set scrolloff=3 " Keep this number of lines below and above cursor
 set showmode " If in Insert, Replace or Visual mode put a message on command line
 set showcmd " Show (partial) command in the last line of the screen
@@ -271,7 +271,7 @@ else
 endif
 
 if !filewritable(s:tempdir)
-    silent execute '!mkdir "'.s:tempdir
+    silent execute '!mkdir "'.s:tempdir.'"'
 endif
 
 if v:version >= 703
