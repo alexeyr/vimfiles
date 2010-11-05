@@ -254,9 +254,9 @@ set ttyfast " More characters will be sent to the screen for redrawing
 set ruler " Show the line and column number of the cursor position in status line
 set backspace=indent,eol,start " Allow sane backspacing
 " Show line numbers relative to cursor line (v. useful for movement commands)
-if has('relativenumber')
+if version >= 703
     set relativenumber 
-elseif has('number')
+else
     set number
 endif
 
