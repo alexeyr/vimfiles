@@ -136,9 +136,6 @@ nnoremap <C-down> <C-w>j
 nnoremap <C-up> <C-w>k
 nnoremap <C-right> <C-w>l
 
-" Save on focus loss
-au FocusLost * :wa
-
 " search for visually highlighted text
 vmap // y/<C-R>"<CR>       
 
