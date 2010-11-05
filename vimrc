@@ -230,7 +230,7 @@ map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2 " Always show status line
 " Format the statusline
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l/%L:%c
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ (%{strlen(&ft)?&ft:'?'},%{&fenc==\"\"?&enc:&fenc},%{&ff})\ \ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l/%L\ Column:\ %c\ 
 
 function! HasPaste()
     if &paste
