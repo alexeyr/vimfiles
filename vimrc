@@ -281,7 +281,13 @@ execute "set backupdir=".s:tempdir."//"
 
 execute "set directory=".s:tempdir."//"
 
-color inkpot " Color scheme
+if has("gui_running") 
+    color inkpot " Color scheme
+else
+    set t_Co=256
+    " color peaksea
+    color inkpot " Color scheme
+endif
 
 " -----------------------------------------------------------------------------
 " | Plug-ins |
