@@ -1,5 +1,13 @@
-lang messages none
-set langmenu=none
+for s:lang in ["none", "en", "en_US", "en_US.UTF-8", "English_US"]
+    try
+        execute 'language messages '.s:lang
+        execute 'set langmenu='.s:lang
+        break
+    catch /^Vim(language):E197:/
+        " Do nothing
+    endtry
+endfor
+unlet s:lang
 
 let mapleader = ","
 
