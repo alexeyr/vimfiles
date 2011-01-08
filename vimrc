@@ -249,7 +249,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set fileencodings=ucs-bom,utf-8,utf-16,latin1,cp1251,koi8-r,cp866 " Select encoding
+set fileencodings=ucs-bom,utf-8,utf-16,latin1,cp1251,koi8-r,cp866 " Select encoding
 set scrolloff=3 " Keep this number of lines below and above cursor
 set showmode " If in Insert, Replace or Visual mode put a message on command line
 set showcmd " Show (partial) command in the last line of the screen
