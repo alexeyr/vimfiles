@@ -15,10 +15,10 @@ let mapleader = ","
 " Use Pathogen. See http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
-call pathogen#runtime_append_all_bundles()
-" call pathogen#helptags() " see http://github.com/tpope/vim-pathogen/issues#issue/7
+execute pathogen#infect()
 filetype plugin indent on
 syntax on
+set sessionoptions-=options
 
 set nocompatible
 
