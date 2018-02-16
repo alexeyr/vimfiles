@@ -12,17 +12,73 @@ unlet s:lang
 let mapleader = ","
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use Pathogen. See http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+" Use Pathogen (still) for local bundles
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 execute pathogen#infect()
-filetype plugin indent on
-syntax on
-set sessionoptions-=options
 
-set nocompatible
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim-Plug
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin(split(&rtp, ',')[0] . '/plug')
 
-set modelines=0
+""" Base
+Plug 'tpope/vim-sensible'
+
+""" Global UI
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+
+Plug 'jlanzarotta/bufexplorer'
+Plug 'fholgado/minibufexpl.vim'
+
+Plug 'easymotion/vim-easymotion' " TODO setup
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'tomtom/quickfixsigns_vim'
+
+Plug 'mhinz/vim-startify'
+
+""" Remember session
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
+
+""" Searches
+" Plug 'wincent/command-t' "" Already covered by others? Try both
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+Plug 'vim-scripts/grep.vim'
+
+""" Completion and actions
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+
+Plug 'ervandew/supertab'
+if has('python')
+  Plug 'valloric/youcompleteme'
+endif
+
+Plug 'tpope/vim-eunuch' " helpers for UNIX commands
+
+""" Version control
+Plug 'tpope/vim-fugitive'
+" Plug 'ludovicchabant/vim-lawrencium'
+
+""" Languages
+" TODO Erlang
+" Plug 'sukima/xmledit'
+Plug 'scrooloose/syntastic'
+
+""" Color scheme
+" Plug 'ericbn/vim-solarized'
+Plug 'altercation/vim-colors-solarized'
+
+call plug#end()
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Behave like Windows 
@@ -304,6 +360,18 @@ endif
 " -----------------------------------------------------------------------------
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic https://github.com/vim-syntastic/syntastic#settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>n :NERDTreeToggle<CR>
@@ -311,18 +379,29 @@ let NERDTreeHijackNetrw=1 " User instead of Netrw when doing an edit /foobar
 let NERDTreeMouseMode=1 " Single click for everything
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDCommenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MiniBufExpl
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1 
-let g:miniBufExplUseSingleClick = 1
-let g:miniBufExplorerMoreThanOne = 2
+""" TODO revisit!
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1 
+"let g:miniBufExplUseSingleClick = 1
+"let g:miniBufExplorerMoreThanOne = 2
 
-autocmd BufRead,BufNew :call UMiniBufExplorer
+"autocmd BufRead,BufNew :call UMiniBufExplorer
 
-map <leader>u :TMiniBufExplorer<cr>
+"map <leader>u :TMiniBufExplorer<cr>
 
 " -----------------------------------------------------------------------------
 " | Host specific |
